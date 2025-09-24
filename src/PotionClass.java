@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class PotionClass {
     
-    private static Scanner scanner = ...;
+    //private static Scanner scanner = ...;
 
     // TODO: Add new ingredients
     /* Possible ingredients (you may make up your own, too):
@@ -15,6 +15,7 @@ public class PotionClass {
      */
 
     public static void main(String[] args) {
+        Ingredient.ingredient();
 
         // TODO: Create a new potion
 

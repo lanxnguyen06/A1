@@ -15,7 +15,7 @@ public class PotionClass {
      */
 
     public static void main(String[] args) {
-        Ingredient.ingredient();
+        Potion.addIngredient();
 
         // TODO: Create a new potion
 

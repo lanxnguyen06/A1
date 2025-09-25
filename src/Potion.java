@@ -84,43 +84,52 @@ public class Potion {
     public static void stirPotion(){
         Random stir = new Random();
         Scanner reader = new Scanner(System.in);
-        System.out.println("How many times would you like to stir it?");
+        System.out.println("How many times would you like to stir it? (1-3)");
         int countStirs = reader.nextInt();
-
-        for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
-        if (iterateStrength.equalsIgnoreCase("Dragon blood")){
-            calculateStrength += Ingredient.getdragonBloodStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Unicorn hooves")){
-            calculateStrength += Ingredient.getunicornHoovesStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Fairy breath")){
-            calculateStrength += Ingredient.getfairyBreathStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Mermaid scales")){
-            calculateStrength += Ingredient.getmermaidScalesStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Elf hair")){
-            calculateStrength += Ingredient.getelfHairStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
-            calculateStrength += Ingredient.getmushroomStrength();
-        }
-    }
-        for (int i = 1; i <= countStirs; i++){
-            int stirStrength = stir.nextInt(6);
-            if (stirStrength == 0){
-                stirStrength = stir.nextInt(6);
-                calculateStrength = calculateStrength + (stirStrength * i); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
-                System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+        boolean check2 = false;
+        while (check2 == false){
+            if (countStirs < 1 || countStirs > 3){
+                System.out.println("You need to stir it 1-3 times");
+                countStirs = reader.nextInt();
             }
-            else{
-                calculateStrength = calculateStrength + (stirStrength * i); 
-                System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
-            }
-        }
-        reader.close();
-        } // ends stirPotion
+            else if (countStirs >= 1 && countStirs <= 3){
+                check2 = true;
+                for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
+                    if (iterateStrength.equalsIgnoreCase("Dragon blood")){
+                        calculateStrength += Ingredient.getdragonBloodStrength();
+                    }
+                    else if (iterateStrength.equalsIgnoreCase("Unicorn hooves")){
+                        calculateStrength += Ingredient.getunicornHoovesStrength();
+                    }
+                    else if (iterateStrength.equalsIgnoreCase("Fairy breath")){
+                        calculateStrength += Ingredient.getfairyBreathStrength();
+                    }
+                    else if (iterateStrength.equalsIgnoreCase("Mermaid scales")){
+                        calculateStrength += Ingredient.getmermaidScalesStrength();
+                    }
+                    else if (iterateStrength.equalsIgnoreCase("Elf hair")){
+                        calculateStrength += Ingredient.getelfHairStrength();
+                    }
+                    else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
+                        calculateStrength += Ingredient.getmushroomStrength();
+                    }
+                }           
+                for (int i = 1; i <= countStirs; i++){
+                    int stirStrength = stir.nextInt(6);
+                    if (stirStrength == 0){
+                        stirStrength = stir.nextInt(6);
+                        calculateStrength = calculateStrength + (stirStrength * i); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
+                        System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+                    }
+                    else{
+                        calculateStrength = calculateStrength + (stirStrength * i); 
+                        System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+                    }
+                }
+                reader.close();
+            } // ends else if statement
+        } // ends while check2 loop
+    } // ends stirPotion
 
     public void heatPotion(){
 

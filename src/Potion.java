@@ -20,15 +20,44 @@ public class Potion {
         while (count < 3){
             System.out.println("Add an ingredient");
             String pick = reader.nextLine();
+
+            boolean check = false; 
+            for (String iterate : ingredients){ // searches through all of the contents of the array
+                if (pick.equalsIgnoreCase(iterate)){
+                    check = true;
+                    break; // if user input = content in array break the loop 
+                }
+            }
+
+            if (!check){ // if user input != content in array keep looping until user puts in valid input
+                System.out.println("This is not an ingredient... Try again");
+                continue; // to be honest i didn't know how to loop back without my code being too convoluted so i had to look this part up
+            }
+            
             count++;
-            cookingPot.add(pick);//adds ingredient to empty array cookingPot
+            cookingPot.add(pick); //adds ingredient to empty array cookingPot
 
             if (count == 3){
                 System.out.println("Add an ingredient");
                 pick = reader.nextLine();
+
+                for (String iterate : ingredients){
+                    if (pick.equalsIgnoreCase(iterate)){
+                        check = true;
+                        break;
+                    }
+                }
+
+                if (!check){
+                    System.out.println("This is not an ingredient... Try again");
+                    continue;
+                }
+
                 cookingPot.add(pick);
                 count++;
-                System.out.println("Would you like to add more ingredients?");
+
+
+                System.out.println("Would you like to add more ingredients? Reply with yes or no");
                 String question = reader.nextLine();
 
                 if (question.equalsIgnoreCase("yes")){

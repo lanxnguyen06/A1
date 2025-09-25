@@ -5,6 +5,7 @@ import java.util.Scanner;
 // TODO: Implement Potion. Add useful variables, methods, getters, setters (if needed), and constructor(s)
 public class Potion {
     public static int count = 1;
+    public static int calculateStrength = 0;
     /*
      * Hint: A potion should have a strength and quality,
      * (optional: an indicator of whether it has been ruined)
@@ -35,7 +36,7 @@ public class Potion {
             }
             
             count++;
-            cookingPot.add(pick); //adds ingredient to empty array cookingPot
+            cookingPot.add(pick.toLowerCase()); //adds ingredient to empty array cookingPot & toLowerCase so it. um idk it 2 am i sleep now
 
             if (count == 3){
                 System.out.println("Add an ingredient");
@@ -53,9 +54,8 @@ public class Potion {
                     continue;
                 }
 
-                cookingPot.add(pick);
+                cookingPot.add(pick.toLowerCase());
                 count++;
-
 
                 System.out.println("Would you like to add more ingredients? Reply with yes or no");
                 String question = reader.nextLine();
@@ -76,8 +76,43 @@ public class Potion {
     }
     System.out.println(cookingPot);
     reader.close();
+
+    for (String iterateStrength : cookingPot){
+        if (iterateStrength.equalsIgnoreCase("Dragon blood")){
+            Ingredient.getdragonBloodStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Unicorn hooves")){
+            Ingredient.getunicornHoovesStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Fairy breath")){
+            Ingredient.getfairyBreathStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Mermaid scales")){
+            Ingredient.getmermaidScalesStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Elf hair")){
+            Ingredient.getelfHairStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
+            Ingredient.getmushroomStrength();
+        }
+    }
+
 }//ends addIngredient
-    // TODO: Implement addIngredient(...)
+
+    public void stirPotion(){
+        Random stir = new Random();
+    }
+
+    public void heatPotion(){
+
+    }
+
+    public void evalutatePotion(){
+
+    }
+
+    // TODO: Implement addIngredient(...) 
     // The ingredient's effect should be added to the potion's strength
 
     // TODO: Implement stirPotion(...)

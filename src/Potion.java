@@ -15,7 +15,7 @@ public class Potion {
         Scanner reader = new Scanner(System.in);
         System.out.println("List of ingredients: Dragon blood, Unicorn hooves, Fairy breath, Mermaid scales, Elf hair, Mushrooms");
         ArrayList<String> cookingPot = new ArrayList<>();
-        String[] list = {"Dragon blood", "Unicorn hooves", "Fairy breath", "Mermaid scales", "Elf hair", "Mushrooms"};
+        String[] ingredients = {"Dragon blood", "Unicorn hooves", "Fairy breath", "Mermaid scales", "Elf hair", "Mushrooms"};
 
         while (count < 3){
             System.out.println("Add an ingredient");

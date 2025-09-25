@@ -1,13 +1,68 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
-class Ingredient {
-    public static String dragonBlood = "Dragon blood"; // index 0 in cookingPot
-    public static String unicornHooves = "Unicorn hooves"; // index 1 in cookingPot
-    public static String fairyBreath = "Fairy breath"; // index 2 in cookingPot
-    public static String mermaidScales = "Mermaid scales"; // index 3 in cookingPot
-    public static String elfHair = "Elf hair"; // index 4 in cookingPot
-    public static String mushrooms = "Mushrooms"; // index 5 in cookingPot
+public class Ingredient{
+    private static String dragonBlood = "Dragon blood"; 
+    private static String unicornHooves = "Unicorn hooves"; 
+    private static String fairyBreath = "Fairy breath"; 
+    private static String mermaidScales = "Mermaid scales"; 
+    private static String elfHair = "Elf hair"; 
+    private static String mushrooms = "Mushrooms"; 
+    private static int strength;
+
+public static String getdragonBlood(){
+    return dragonBlood;
+}
+
+public static String getunicornHooves(){
+    return unicornHooves;
+}
+
+public static String getfairyBreath(){
+    return fairyBreath;
+}
+
+public static String getmermaidScales(){
+    return mermaidScales;
+}
+
+public static String getelfHair(){
+    return elfHair;
+}
+
+public static String getmushrooms(){
+    return mushrooms;
+}
+
+public static int getdragonBloodStrength(){
+    strength = 8;
+    return strength;
+}
+
+public static int getunicornHoovesStrength(){
+    strength = 6;
+    return strength;
+}
+
+public static int getfairyBreathStrength(){
+    strength = 4;
+    return strength;
+}
+
+public static int getmermaidScalesStrength(){
+    strength = 5;
+    return strength;
+}
+
+public static int getelfHairStrength(){
+    strength = 2;
+    return strength;
+}
+
+public static int getmushroomStrength(){
+    strength = 3;
+    return strength;
+}
+
 }
     // TODO: Implement Ingredient. Add useful variables, methods, getters, setters (if needed), and constructor(s)
     // Hint: An ingredient has a name and an effect (should be max. 10) on the potion's strength

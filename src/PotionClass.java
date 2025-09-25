@@ -16,6 +16,7 @@ public class PotionClass {
 
     public static void main(String[] args) {
         Potion.addIngredient();
+        Potion.stirPotion();
 
         // TODO: Create a new potion
 
@@ -33,7 +34,7 @@ public class PotionClass {
 
     // TODO: Implement selectIngredients(...)
     // Allow the user to choose ingredients
-    // Prompt the user again for invalid choices
+    // Prompt the user again for invalid choices -- I combined this with addIngredient... if that's OK.
 
     // TODO: Implement stirPotion(...)
     // to prompt the user on how often they would like to stir the potion

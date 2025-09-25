@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 // TODO: Implement Potion. Add useful variables, methods, getters, setters (if needed), and constructor(s)
 public class Potion {
-    public static int count = 1;
+    public static int count = 1; 
+    public static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
     public static int calculateStrength = 0;
     /*
      * Hint: A potion should have a strength and quality,
@@ -15,8 +16,7 @@ public class Potion {
     public static void addIngredient(){
         Scanner reader = new Scanner(System.in);
         System.out.println("List of ingredients: Dragon blood, Unicorn hooves, Fairy breath, Mermaid scales, Elf hair, Mushrooms");
-        ArrayList<String> cookingPot = new ArrayList<>();
-        String[] ingredients = {"Dragon blood", "Unicorn hooves", "Fairy breath", "Mermaid scales", "Elf hair", "Mushrooms"};
+        String[] ingredients ={Ingredient.getdragonBlood(), Ingredient.getunicornHooves(), Ingredient.getfairyBreath(), Ingredient.getmermaidScales(), Ingredient.getelfHair(), Ingredient.getmushrooms()};
 
         while (count < 3){
             System.out.println("Add an ingredient");
@@ -74,35 +74,46 @@ public class Potion {
 
         }
     }
-    System.out.println(cookingPot);
+    System.out.println("The pot contains " + cookingPot);
     reader.close();
-
-    for (String iterateStrength : cookingPot){
-        if (iterateStrength.equalsIgnoreCase("Dragon blood")){
-            Ingredient.getdragonBloodStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Unicorn hooves")){
-            Ingredient.getunicornHoovesStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Fairy breath")){
-            Ingredient.getfairyBreathStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Mermaid scales")){
-            Ingredient.getmermaidScalesStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Elf hair")){
-            Ingredient.getelfHairStrength();
-        }
-        else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
-            Ingredient.getmushroomStrength();
-        }
-    }
 
 }//ends addIngredient
 
-    public void stirPotion(){
+    public static void stirPotion(){
         Random stir = new Random();
+        int howManyStirs = stir.nextInt(6); // selects a random stir amount between the range of 0-5
+        if (howManyStirs == 0){ // stirs again if stirred 0 times
+            howManyStirs = stir.nextInt(6);
+        }
+
+        System.out.println("Your magical pet owl took over the pot and stirred it for you " + howManyStirs + " times!");
+        for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
+        if (iterateStrength.equalsIgnoreCase("Dragon blood")){
+            calculateStrength += Ingredient.getdragonBloodStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Unicorn hooves")){
+            calculateStrength += Ingredient.getunicornHoovesStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Fairy breath")){
+            calculateStrength += Ingredient.getfairyBreathStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Mermaid scales")){
+            calculateStrength += Ingredient.getmermaidScalesStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Elf hair")){
+            calculateStrength += Ingredient.getelfHairStrength();
+        }
+        else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
+            calculateStrength += Ingredient.getmushroomStrength();
+        }
     }
+            
+    for (int i = 1; i <= howManyStirs; i++){ 
+    System.out.println("Stir " + i + ": " + (calculateStrength + ((0.5 * i)))); // original potion strength will be added an extra strength by 0.5 depending on how many stirs 
+    }
+
+    System.out.println("Your potion's strength is " + (calculateStrength + (0.5 * howManyStirs)));
+    } // ends stirPotion
 
     public void heatPotion(){
 

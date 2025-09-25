@@ -86,12 +86,6 @@ public class Potion {
         Scanner reader = new Scanner(System.in);
         System.out.println("How many times would you like to stir it?");
         int countStirs = reader.nextInt();
-        //int howManyStirs = stir.nextInt(6); // selects a random stir amount between the range of 0-5
-        //if (howManyStirs == 0){ // stirs again if stirred 0 times
-            //howManyStirs = stir.nextInt(6);
-        //}
-
-        //System.out.println("Your magical pet owl took over the pot and stirred it for you " + howManyStirs + " times!");
 
         for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
         if (iterateStrength.equalsIgnoreCase("Dragon blood")){
@@ -117,8 +111,8 @@ public class Potion {
             int stirStrength = stir.nextInt(6);
             if (stirStrength == 0){
                 stirStrength = stir.nextInt(6);
-                calculateStrength = calculateStrength + (stirStrength * i); 
-                System.out.println("Stir " + i + "'s effect on strength:" + calculateStrength);
+                calculateStrength = calculateStrength + (stirStrength * i); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
+                System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
             }
             else{
                 calculateStrength = calculateStrength + (stirStrength * i); 
@@ -126,11 +120,6 @@ public class Potion {
             }
         }
         reader.close();
-        //for (int i = 1; i <= howManyStirs; i++){ 
-        //System.out.println("Stir " + i + ": " + (calculateStrength + ((0.5 * i)))); // original potion strength will be added an extra strength by 0.5 multiplier depending on how many stirs 
-        //}
-
-        //System.out.println("Your potion's strength is " + (calculateStrength + (0.5 * howManyStirs)));
         } // ends stirPotion
 
     public void heatPotion(){

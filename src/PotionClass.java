@@ -16,7 +16,12 @@ public class PotionClass {
 
     public static void main(String[] args) {
         Potion.addIngredient();
+        if (Potion.question.equalsIgnoreCase("yes")){
+            System.exit(0); // had to look this up cause i didn't know how to make the program stop if user inputs >3 ingredients
+        }
+        else{
         Potion.stirPotion();
+        }
 
         // TODO: Create a new potion
 

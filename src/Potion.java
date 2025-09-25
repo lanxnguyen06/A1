@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Potion {
     public static int count = 1; 
     public static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
-    public static int calculateStrength = 0;
+    public static double calculateStrength = 0;
+    public static String question;
     /*
      * Hint: A potion should have a strength and quality,
      * (optional: an indicator of whether it has been ruined)
@@ -58,7 +59,7 @@ public class Potion {
                 count++;
 
                 System.out.println("Would you like to add more ingredients? Reply with yes or no");
-                String question = reader.nextLine();
+                question = reader.nextLine();
 
                 if (question.equalsIgnoreCase("yes")){
                     System.out.println("Add an ingredient");
@@ -74,19 +75,24 @@ public class Potion {
 
         }
     }
+    if(question.equalsIgnoreCase("yes")){
     System.out.println("The pot contains " + cookingPot);
-    reader.close();
+    }
 
 }//ends addIngredient
 
     public static void stirPotion(){
         Random stir = new Random();
-        int howManyStirs = stir.nextInt(6); // selects a random stir amount between the range of 0-5
-        if (howManyStirs == 0){ // stirs again if stirred 0 times
-            howManyStirs = stir.nextInt(6);
-        }
+        Scanner reader = new Scanner(System.in);
+        System.out.println("How many times would you like to stir it?");
+        int countStirs = reader.nextInt();
+        //int howManyStirs = stir.nextInt(6); // selects a random stir amount between the range of 0-5
+        //if (howManyStirs == 0){ // stirs again if stirred 0 times
+            //howManyStirs = stir.nextInt(6);
+        //}
 
-        System.out.println("Your magical pet owl took over the pot and stirred it for you " + howManyStirs + " times!");
+        //System.out.println("Your magical pet owl took over the pot and stirred it for you " + howManyStirs + " times!");
+
         for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
         if (iterateStrength.equalsIgnoreCase("Dragon blood")){
             calculateStrength += Ingredient.getdragonBloodStrength();
@@ -107,13 +113,25 @@ public class Potion {
             calculateStrength += Ingredient.getmushroomStrength();
         }
     }
-            
-    for (int i = 1; i <= howManyStirs; i++){ 
-    System.out.println("Stir " + i + ": " + (calculateStrength + ((0.5 * i)))); // original potion strength will be added an extra strength by 0.5 depending on how many stirs 
-    }
+        for (int i = 1; i <= countStirs; i++){
+            int stirStrength = stir.nextInt(6);
+            if (stirStrength == 0){
+                stirStrength = stir.nextInt(6);
+                calculateStrength = calculateStrength + (stirStrength * i); 
+                System.out.println("Stir " + i + "'s effect on strength:" + calculateStrength);
+            }
+            else{
+                calculateStrength = calculateStrength + (stirStrength * i); 
+                System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+            }
+        }
+        reader.close();
+        //for (int i = 1; i <= howManyStirs; i++){ 
+        //System.out.println("Stir " + i + ": " + (calculateStrength + ((0.5 * i)))); // original potion strength will be added an extra strength by 0.5 multiplier depending on how many stirs 
+        //}
 
-    System.out.println("Your potion's strength is " + (calculateStrength + (0.5 * howManyStirs)));
-    } // ends stirPotion
+        //System.out.println("Your potion's strength is " + (calculateStrength + (0.5 * howManyStirs)));
+        } // ends stirPotion
 
     public void heatPotion(){
 

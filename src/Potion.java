@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Potion {
     public static int count = 1; 
     public static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
-    public static double calculateStrength = 0;
+    public static int calculateStrength = 0;
+    public static int calculateHeat = 0;
     public static String question;
     /*
      * Hint: A potion should have a strength and quality,
@@ -22,8 +23,8 @@ public class Potion {
         while (count < 3){
             System.out.println("Add an ingredient");
             String pick = reader.nextLine();
-
             boolean check = false; 
+
             for (String iterate : ingredients){ // searches through all of the contents of the array
                 if (pick.equalsIgnoreCase(iterate)){
                     check = true;
@@ -72,13 +73,10 @@ public class Potion {
 
                 else
                 System.out.println("You need to respond with yes or no.");
-
+            }
         }
-    }
-    if(question.equalsIgnoreCase("yes")){
+    if(question.equalsIgnoreCase("yes"))
     System.out.println("The pot contains " + cookingPot);
-    }
-
 }//ends addIngredient
 
     public static void stirPotion(){
@@ -93,7 +91,7 @@ public class Potion {
                 countStirs = reader.nextInt();
             }
             else if (countStirs >= 1 && countStirs <= 3){
-                check2 = true;
+                check2 = true; // breaks while loop
                 for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
                     if (iterateStrength.equalsIgnoreCase("Dragon blood")){
                         calculateStrength += Ingredient.getdragonBloodStrength();
@@ -114,26 +112,46 @@ public class Potion {
                         calculateStrength += Ingredient.getmushroomStrength();
                     }
                 }           
-                for (int i = 1; i <= countStirs; i++){
+                for (int s = 1; s <= countStirs; s++){
                     int stirStrength = stir.nextInt(6);
                     if (stirStrength == 0){
                         stirStrength = stir.nextInt(6);
-                        calculateStrength = calculateStrength + (stirStrength * i); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
-                        System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+                        calculateStrength = calculateStrength + (stirStrength * s); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
+                        System.out.println("Stir " + s + "'s effect on strength: " + calculateStrength);
                     }
                     else{
-                        calculateStrength = calculateStrength + (stirStrength * i); 
-                        System.out.println("Stir " + i + "'s effect on strength: " + calculateStrength);
+                        calculateStrength = calculateStrength + (stirStrength * s); 
+                        System.out.println("Stir " + s + "'s effect on strength: " + calculateStrength);
                     }
                 }
-                reader.close();
             } // ends else if statement
         } // ends while check2 loop
     } // ends stirPotion
 
-    public void heatPotion(){
-
-    }
+    public static void heatPotion(){
+        Random heat = new Random();
+        Scanner reader = new Scanner(System.in);
+        System.out.println("By how much would you like to heat your potion? (1-3)");
+        System.out.println("Be careful, it may explode!");
+        int countHeat = reader.nextInt();
+        boolean check3 = false;
+        while (check3 == false){
+            if (countHeat < 1 || countHeat > 3){
+                System.out.println("You need to stir it 1-3 times");
+                countHeat = reader.nextInt();
+            }
+            else if (countHeat >= 1 && countHeat <= 3){
+                check3 = true;
+                int h = 1;
+                for (int i = 1; i <= countHeat; i++){
+                    int heatQuality = heat.nextInt(8);
+                    calculateHeat = calculateHeat + heatQuality;
+                    System.out.println("Potion heated " + h + " times. Effect on potion's strength: " + calculateHeat);
+                    h++;
+                } 
+            }//ends elseif for countHeat
+        } // ends while loop for check3
+    }//ends heatPotion
 
     public void evalutatePotion(){
 

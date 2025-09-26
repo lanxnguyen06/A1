@@ -68,16 +68,15 @@ public class Potion {
                     System.out.println("You can only add 3 ingredients to a potion! Your lab exploded!!");
                 }
 
-                else if(question.equalsIgnoreCase("no"))
+                else if(question.equalsIgnoreCase("no")){
                     System.out.println("Next, you need to stir and mix your potion!");
-
+                    System.out.println("The pot contains " + cookingPot);
+                }
                 else
                 System.out.println("You need to respond with yes or no.");
             }
         }
-    if(question.equalsIgnoreCase("yes"))
-    System.out.println("The pot contains " + cookingPot);
-}//ends addIngredient
+    }//ends addIngredient
 
     public static void stirPotion(){
         Random stir = new Random();
@@ -143,18 +142,18 @@ public class Potion {
             else if (countHeat >= 1 && countHeat <= 3){
                 check3 = true;
                 int h = 1;
-                for (int i = 1; i <= countHeat; i++){
+                for (int hq = 1; hq <= countHeat; hq++){
                     int heatQuality = heat.nextInt(8);
                     calculateHeat = calculateHeat + heatQuality;
                     System.out.println("Potion heated " + h + " times. Effect on potion's strength: " + calculateHeat);
                     h++;
-                } 
+                }
             }//ends elseif for countHeat
         } // ends while loop for check3
     }//ends heatPotion
 
     public void evalutatePotion(){
-
+        
     }
 
     // TODO: Implement addIngredient(...) 
@@ -179,4 +178,5 @@ public class Potion {
      * 
      *  Optional: Feel free to add creative messages or extra effects!
      */
+
 }

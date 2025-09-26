@@ -60,24 +60,37 @@ public class Potion {
                 count++;
 
                 boolean yesOrNo = false;
-                while (!yesOrNo){
-                System.out.println("Would you like to add more ingredients? Reply with yes or no");
-                question = reader.nextLine();
+                while (!yesOrNo){ // while yesOrNo is false loop until yesOrNo is true (when user inputs "yes" or "no")
+                    System.out.println("Would you like to add more ingredients? Reply with yes or no");
+                    question = reader.nextLine();
+                    check = false;
 
-                if (question.equalsIgnoreCase("yes")){
-                    System.out.println("Add an ingredient");
-                    reader.nextLine();
-                    System.out.println("You can only add 3 ingredients to a potion! Your lab exploded!!");
-                    yesOrNo = true;
+                    if (question.equalsIgnoreCase("yes")){
+                        System.out.println("Add an ingredient");
+                        pick = reader.nextLine();
+                        for (String iterate : ingredients){
+                            if (pick.equalsIgnoreCase(iterate)){
+                                check = true;
+                                break;
+                            }
+                        }
+                        if (!check){
+                            System.out.println("This is not an ingredient... Try again");
+                            continue;
+                        }
+                        else{
+                            System.out.println("You can only add 3 ingredients to a potion! Your lab exploded!!");
+                            yesOrNo = true;
+                        }
+                    }
+                    else if(question.equalsIgnoreCase("no")){
+                        System.out.println("Next, you need to stir and mix your potion!");
+                        System.out.println("The pot contains " + cookingPot);
+                        yesOrNo = true;
+                    }
+                    else
+                    System.out.println("You need to respond with yes or no.");
                 }
-                else if(question.equalsIgnoreCase("no")){
-                    System.out.println("Next, you need to stir and mix your potion!");
-                    System.out.println("The pot contains " + cookingPot);
-                    yesOrNo = true;
-                }
-                else
-                System.out.println("You need to respond with yes or no.");
-            }
             }
         }
     }//ends addIngredient
@@ -88,6 +101,7 @@ public class Potion {
         System.out.println("How many times would you like to stir it? (1-3)");
         int countStirs = reader.nextInt();
         boolean check2 = false;
+
         while (check2 == false){
             if (countStirs < 1 || countStirs > 3){
                 System.out.println("You need to stir it 1-3 times");

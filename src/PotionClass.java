@@ -22,6 +22,7 @@ public class PotionClass {
         else{
         Potion.stirPotion();
         Potion.heatPotion();
+        Potion.evaluatePotion();
         }
 
         // TODO: Create a new potion

@@ -79,7 +79,7 @@ public class Potion {
                             continue;
                         }
                         else{
-                            System.out.println("You can only add 3 ingredients to a potion! Your lab exploded!!");
+                            System.out.println("You can only add 3 ingredients to a potion! Your potion exploded!!");
                             yesOrNo = true;
                         }
                     }
@@ -133,7 +133,7 @@ public class Potion {
                     int stirStrength = stir.nextInt(6);
                     if (stirStrength == 0){
                         stirStrength = stir.nextInt(6);
-                        calculateStrength = calculateStrength + (stirStrength * s); // stirStrength randomly adds a strength value to calculateStrength multiplied by whatever stir iteration the loop is on
+                        calculateStrength = calculateStrength + (stirStrength * 2); // stirStrength randomly adds a strength value to calculateStrength multiplied by 2
                         System.out.println("Stir " + s + "'s effect on strength: " + calculateStrength);
                     }
                     else{
@@ -154,7 +154,7 @@ public class Potion {
         boolean check3 = false;
         while (check3 == false){
             if (countHeat < 1 || countHeat > 3){
-                System.out.println("You need to stir it 1-3 times");
+                System.out.println("You need to heat it 1-3 times");
                 countHeat = reader.nextInt();
             }
             else if (countHeat >= 1 && countHeat <= 3){
@@ -163,15 +163,15 @@ public class Potion {
                 for (int hq = 1; hq <= countHeat; hq++){
                     int heatQuality = heat.nextInt(8);
                     calculateHeat = calculateHeat + heatQuality;
-                    System.out.println("Potion heated " + h + " times. Effect on potion's strength: " + calculateHeat);
+                    System.out.println("Potion heated " + h + " times. Effect on potion's quality: " + calculateHeat);
                     h++;
                 }
             }//ends elseif for countHeat
         } // ends while loop for check3
     }//ends heatPotion
 
-    public void evalutatePotion(){
-        
+    public static void evaluatePotion(){
+        CauldronEvent.triggerEvent();
     }
 
     // TODO: Implement addIngredient(...) 

@@ -34,22 +34,22 @@ public static String getmushrooms(){
 }
 
 public static int getdragonBloodStrength(){
-    strength = 6;
+    strength = 3;
     return strength;
 }
 
 public static int getunicornHoovesStrength(){
-    strength = 5;
+    strength = 3;
     return strength;
 }
 
 public static int getfairyBreathStrength(){
-    strength = 4;
+    strength = 2;
     return strength;
 }
 
 public static int getmermaidScalesStrength(){
-    strength = 3;
+    strength = 2;
     return strength;
 }
 
@@ -59,7 +59,7 @@ public static int getelfHairStrength(){
 }
 
 public static int getmushroomStrength(){
-    strength = 2;
+    strength = 1;
     return strength;
 }
 

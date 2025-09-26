@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class CauldronEvent {
-    public boolean triggerEvent() {
+    public static boolean triggerEvent() {
         Random random = new Random();
         int event = random.nextInt(4);
 

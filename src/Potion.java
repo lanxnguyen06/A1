@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 // TODO: Implement Potion. Add useful variables, methods, getters, setters (if needed), and constructor(s)
 public class Potion {
-    public static int count = 1; 
-    public static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
-    public static int calculateStrength = 0;
-    public static int calculateHeat = 0;
+    private static int count = 1; 
+    private static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
+    private static int calculateStrength = 0;
+    private static int calculateHeat = 0;
     public static String question;
     /*
      * Hint: A potion should have a strength and quality,
@@ -18,7 +18,7 @@ public class Potion {
     public static void addIngredient(){
         Scanner reader = new Scanner(System.in);
         System.out.println("List of ingredients: Dragon blood, Unicorn hooves, Fairy breath, Mermaid scales, Elf hair, Mushrooms");
-        String[] ingredients ={Ingredient.getdragonBlood(), Ingredient.getunicornHooves(), Ingredient.getfairyBreath(), Ingredient.getmermaidScales(), Ingredient.getelfHair(), Ingredient.getmushrooms()};
+        String[] ingredients = {Ingredient.getdragonBlood(), Ingredient.getunicornHooves(), Ingredient.getfairyBreath(), Ingredient.getmermaidScales(), Ingredient.getelfHair(), Ingredient.getmushrooms()};
 
         while (count < 3){
             System.out.println("Add an ingredient");
@@ -34,7 +34,7 @@ public class Potion {
 
             if (!check){ // if user input != content in array keep looping until user puts in valid input
                 System.out.println("This is not an ingredient... Try again");
-                continue; // to be honest i didn't know how to loop back without my code being too convoluted so i had to look this part up
+                continue; // i didn't know how to loop back without my code being too convoluted so i had to look this part up but now i know this is used to go back to the loop ^_^
             }
             
             count++;
@@ -59,6 +59,8 @@ public class Potion {
                 cookingPot.add(pick.toLowerCase());
                 count++;
 
+                boolean yesOrNo = false;
+                while (!yesOrNo){
                 System.out.println("Would you like to add more ingredients? Reply with yes or no");
                 question = reader.nextLine();
 
@@ -66,14 +68,16 @@ public class Potion {
                     System.out.println("Add an ingredient");
                     reader.nextLine();
                     System.out.println("You can only add 3 ingredients to a potion! Your lab exploded!!");
+                    yesOrNo = true;
                 }
-
                 else if(question.equalsIgnoreCase("no")){
                     System.out.println("Next, you need to stir and mix your potion!");
                     System.out.println("The pot contains " + cookingPot);
+                    yesOrNo = true;
                 }
                 else
                 System.out.println("You need to respond with yes or no.");
+            }
             }
         }
     }//ends addIngredient

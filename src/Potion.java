@@ -31,7 +31,7 @@ public class Potion {
             for (String iterate : ingredients){ // searches through all of the contents of the array
                 if (pick.equalsIgnoreCase(iterate)){
                     check = true;
-                    break; // if user input = content in array break the loop 
+                    count++;
                 }
             }
 
@@ -40,13 +40,16 @@ public class Potion {
                 continue; // i didn't know how to loop back without my code being too convoluted so i had to look this part up but now i know this is used to go back to the loop ^_^
             }
             
-            count++;
             cookingPot.add(pick.toLowerCase()); //adds ingredient to empty array cookingPot & toLowerCase so it. um idk it 2 am i sleep now
 
             if (count == 3){
+
+                boolean checkThird = false;
+                while (!checkThird){
                 System.out.println("Add an ingredient");
                 pick = reader.nextLine();
-
+                check = false;
+                
                 for (String iterate : ingredients){
                     if (pick.equalsIgnoreCase(iterate)){
                         check = true;
@@ -56,11 +59,15 @@ public class Potion {
 
                 if (!check){
                     System.out.println("This is not an ingredient... Try again");
+                    check = false;
                     continue;
                 }
+                
+                checkThird = true;
+            }
 
-                cookingPot.add(pick.toLowerCase());
                 count++;
+                cookingPot.add(pick.toLowerCase());
 
                 boolean yesOrNo = false;
                 while (!yesOrNo){ // while yesOrNo is false loop until yesOrNo is true (when user inputs "yes" or "no")

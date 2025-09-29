@@ -2,18 +2,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-// TODO: Implement Potion. Add useful variables, methods, getters, setters (if needed), and constructor(s)
 public class Potion {
     private static int count = 1; 
     private static ArrayList<String> cookingPot; // empty array list that will be filled when user inputs ingredients
     private static int calculateStrength = 0;
     private static int calculateHeat = 0;
-    public static String question;
-    /*
-     * Hint: A potion should have a strength and quality,
-     * (optional: an indicator of whether it has been ruined)
-     * Ingredients do not need to be stored within the Potion class!
-     */
+    protected static String question;
+
     public Potion(){
         cookingPot = new ArrayList<>();
     }
@@ -23,7 +18,7 @@ public class Potion {
         System.out.println("List of ingredients: Dragon blood, Unicorn hooves, Fairy breath, Mermaid scales, Elf hair, Mushrooms");
         String[] ingredients = {Ingredient.getdragonBlood(), Ingredient.getunicornHooves(), Ingredient.getfairyBreath(), Ingredient.getmermaidScales(), Ingredient.getelfHair(), Ingredient.getmushrooms()};
 
-        while (count < 3){
+        while (count < 3){ // first 2 ingredients
             System.out.println("Add an ingredient");
             String pick = reader.nextLine();
             boolean check = false; 
@@ -31,46 +26,47 @@ public class Potion {
             for (String iterate : ingredients){ // searches through all of the contents of the array
                 if (pick.equalsIgnoreCase(iterate)){
                     check = true;
-                    count++;
                 }
             }
 
             if (!check){ // if user input != content in array keep looping until user puts in valid input
                 System.out.println("This is not an ingredient... Try again");
-                continue; // i didn't know how to loop back without my code being too convoluted so i had to look this part up but now i know this is used to go back to the loop ^_^
+                continue; // had to look this part up- continue is used to go back to the loop 
             }
-            
-            cookingPot.add(pick.toLowerCase()); //adds ingredient to empty array cookingPot & toLowerCase so it. um idk it 2 am i sleep now
 
-            if (count == 3){
+            count++;
+            cookingPot.add(pick.toLowerCase()); //adds ingredient to empty array cookingPot & toLowerCase just to make it look organized when printed out
 
+            if (count == 3){ // 3rd ingredient seperate because from the 3rd ingredient i then ask if i want to add more ingredients
                 boolean checkThird = false;
-                while (!checkThird){
-                System.out.println("Add an ingredient");
-                pick = reader.nextLine();
-                check = false;
-                
-                for (String iterate : ingredients){
-                    if (pick.equalsIgnoreCase(iterate)){
-                        check = true;
-                        break;
-                    }
-                }
 
-                if (!check){
-                    System.out.println("This is not an ingredient... Try again");
-                    check = false;
-                    continue;
-                }
-                
+                while (!checkThird){ // had to add another loop so continue would go back to this loop instead of while (count < 3)
+                    System.out.println("Add an ingredient");
+                    pick = reader.nextLine();
+                    check = false; // reset check back to false so it can loop
+
+                    for (String iterate : ingredients){
+                        if (pick.equalsIgnoreCase(iterate)){
+                            check = true; // 
+                            break;
+                        }
+                    }
+
+                    if (!check){
+                        System.out.println("This is not an ingredient... Try again");
+                        check = false;
+                        continue;
+                    }
+
                 checkThird = true;
-            }
+
+                }
 
                 count++;
                 cookingPot.add(pick.toLowerCase());
 
                 boolean yesOrNo = false;
-                while (!yesOrNo){ // while yesOrNo is false loop until yesOrNo is true (when user inputs "yes" or "no")
+                while (!yesOrNo){ // while yesOrNo is false, loop until yesOrNo is true (when user inputs "yes" or "no")
                     System.out.println("Would you like to add more ingredients? Reply with yes or no");
                     question = reader.nextLine();
                     check = false;
@@ -78,12 +74,14 @@ public class Potion {
                     if (question.equalsIgnoreCase("yes")){
                         System.out.println("Add an ingredient");
                         pick = reader.nextLine();
+
                         for (String iterate : ingredients){
                             if (pick.equalsIgnoreCase(iterate)){
                                 check = true;
                                 break;
                             }
                         }
+
                         if (!check){
                             System.out.println("This is not an ingredient... Try again");
                             continue;
@@ -93,17 +91,19 @@ public class Potion {
                             yesOrNo = true;
                         }
                     }
+
                     else if(question.equalsIgnoreCase("no")){
                         System.out.println("Next, you need to stir and mix your potion!");
                         System.out.println("The pot contains " + cookingPot);
                         yesOrNo = true;
                     }
+
                     else
                     System.out.println("You need to respond with yes or no.");
                 }
             }
         }
-    }//ends addIngredient
+    }
 
     public static void stirPotion(){
         Random stir = new Random();
@@ -112,14 +112,17 @@ public class Potion {
         int countStirs = reader.nextInt();
         boolean check2 = false;
 
-        while (check2 == false){
+        while (!check2){
+
             if (countStirs < 1 || countStirs > 3){
                 System.out.println("You need to stir it 1-3 times");
                 countStirs = reader.nextInt();
             }
+
             else if (countStirs >= 1 && countStirs <= 3){
                 check2 = true; // breaks while loop
-                for (String iterateStrength : cookingPot){ // checks the whole array to see what strength to add to the potion depending on what the user picked for ingredients
+
+                for (String iterateStrength : cookingPot){ // checks the whole array list to see what strength to add to the potion depending on what the user picked for ingredients
                     if (iterateStrength.equalsIgnoreCase("Dragon blood")){
                         calculateStrength += Ingredient.getdragonBloodStrength();
                     }
@@ -138,12 +141,14 @@ public class Potion {
                     else if (iterateStrength.equalsIgnoreCase("Mushrooms")){
                         calculateStrength += Ingredient.getmushroomStrength();
                     }
-                }           
+                }
+
                 for (int s = 1; s <= countStirs; s++){
                     int stirStrength = stir.nextInt(6);
+
                     if (stirStrength == 0){
                         stirStrength = stir.nextInt(6);
-                        calculateStrength = calculateStrength + (stirStrength * 2); // stirStrength randomly adds a strength value to calculateStrength multiplied by 2
+                        calculateStrength = calculateStrength + (stirStrength * 2); // stirStrength randomly adds a strength value multiplied by 2 to calculateStrength 
                         System.out.println("Stir " + s + "'s effect on strength: " + calculateStrength);
                     }
                     else{
@@ -151,9 +156,9 @@ public class Potion {
                         System.out.println("Stir " + s + "'s effect on strength: " + calculateStrength);
                     }
                 }
-            } // ends else if statement
-        } // ends while check2 loop
-    } // ends stirPotion
+            } 
+        } 
+    }
 
     public static void heatPotion(){
         Random heat = new Random();
@@ -162,7 +167,9 @@ public class Potion {
         System.out.println("Be careful, it may explode!");
         int countHeat = reader.nextInt();
         boolean check3 = false;
-        while (check3 == false){
+
+        while (!check3){
+
             if (countHeat < 1 || countHeat > 3){
                 System.out.println("You need to heat it 1-3 times");
                 countHeat = reader.nextInt();
@@ -176,9 +183,9 @@ public class Potion {
                     System.out.println("Potion heated " + h + " times. Effect on potion's quality: " + calculateHeat);
                     h++;
                 }
-            }//ends elseif for countHeat
-        } // ends while loop for check3
-    }//ends heatPotion
+            }
+        } 
+    }
 
     public static void evaluatePotion(){
         if (calculateHeat > 3 && calculateStrength > 15){
@@ -191,27 +198,4 @@ public class Potion {
             System.out.println("Your potion is ruined.");
         }
     }
-    // TODO: Implement addIngredient(...) 
-    // The ingredient's effect should be added to the potion's strength
-
-    // TODO: Implement stirPotion(...)
-    // Stir the potion with a random effect: add a random value between 1 and 5 to its strength
-
-    // TODO: Implement heatPotion(...)
-    // Heat the potion with a random effect: add a random value between 0 and 7 to its quality
-
-    // TODO: Implement evaluatePotion(...)
-    /*
-     * Decide the potion's final outcome:
-     * Criteria:
-     * 1. Trigger CauldronEvent — if it explodes, the potion is ruined.
-     * 2. Otherwise, check its strength & quality:
-     *    If the strength is greater than 15 and the quality is greater than 3, it is brewed perfectly
-     *    If the potion is not ruined and its strength is less than 15 but greater than
-     *      10 and the quality is greater than 3, the potion is a bit unstable but ok
-     *    Otherwise, the potion is ruined.
-     * 
-     *  Optional: Feel free to add creative messages or extra effects!
-     */
-
 }

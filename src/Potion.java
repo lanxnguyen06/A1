@@ -5,7 +5,7 @@ import java.util.Scanner;
 // TODO: Implement Potion. Add useful variables, methods, getters, setters (if needed), and constructor(s)
 public class Potion {
     private static int count = 1; 
-    private static ArrayList<String> cookingPot = new ArrayList<>(); // empty array list that will be filled when user inputs ingredients
+    private static ArrayList<String> cookingPot; // empty array list that will be filled when user inputs ingredients
     private static int calculateStrength = 0;
     private static int calculateHeat = 0;
     public static String question;
@@ -14,6 +14,9 @@ public class Potion {
      * (optional: an indicator of whether it has been ruined)
      * Ingredients do not need to be stored within the Potion class!
      */
+    public Potion(){
+        cookingPot = new ArrayList<>();
+    }
 
     public static void addIngredient(){
         Scanner reader = new Scanner(System.in);
@@ -171,9 +174,16 @@ public class Potion {
     }//ends heatPotion
 
     public static void evaluatePotion(){
-        CauldronEvent.triggerEvent();
+        if (calculateHeat > 3 && calculateStrength > 15){
+            System.out.println("Your potion is brewed perfectly!");
+        }
+        else if (calculateHeat > 3 && (calculateStrength < 15 && calculateStrength > 10)){
+                System.out.println("Your potion is a bit unstable, but OK");
+        }
+        else{
+            System.out.println("Your potion is ruined.");
+        }
     }
-
     // TODO: Implement addIngredient(...) 
     // The ingredient's effect should be added to the potion's strength
 

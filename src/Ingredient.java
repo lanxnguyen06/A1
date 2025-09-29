@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Ingredient{
     private static String dragonBlood = "Dragon blood"; 
     private static String unicornHooves = "Unicorn hooves"; 

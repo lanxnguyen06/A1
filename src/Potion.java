@@ -3,17 +3,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Potion {
-    private static int count = 1; 
-    private static ArrayList<String> cookingPot; // empty array list that will be filled when user inputs ingredients
-    private static int calculateStrength = 0;
-    private static int calculateHeat = 0;
-    protected static String question;
+    private int count = 1; 
+    private ArrayList<String> cookingPot; // empty array list that will be filled when user inputs ingredients
+    private int calculateStrength = 0;
+    private int calculateHeat = 0;
+    protected String question;
 
     public Potion(){
         cookingPot = new ArrayList<>();
     }
 
-    public static void addIngredient(){
+    public void addIngredient(){
         Scanner reader = new Scanner(System.in);
         System.out.println("List of ingredients: Dragon blood, Unicorn hooves, Fairy breath, Mermaid scales, Elf hair, Mushrooms");
         String[] ingredients = {Ingredient.getdragonBlood(), Ingredient.getunicornHooves(), Ingredient.getfairyBreath(), Ingredient.getmermaidScales(), Ingredient.getelfHair(), Ingredient.getmushrooms()};
@@ -105,7 +105,7 @@ public class Potion {
         }
     }
 
-    public static void stirPotion(){
+    public void stirPotion(){
         Random stir = new Random();
         Scanner reader = new Scanner(System.in);
         System.out.println("How many times would you like to stir it? (1-3)");
@@ -160,7 +160,7 @@ public class Potion {
         } 
     }
 
-    public static void heatPotion(){
+    public void heatPotion(){
         Random heat = new Random();
         Scanner reader = new Scanner(System.in);
         System.out.println("By how much would you like to heat your potion? (1-3)");
@@ -187,7 +187,7 @@ public class Potion {
         } 
     }
 
-    public static void evaluatePotion(){
+    public void evaluatePotion(){
         if (calculateHeat > 3 && calculateStrength > 15){
             System.out.println("Your potion is brewed perfectly!");
         }
